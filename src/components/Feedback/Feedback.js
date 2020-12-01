@@ -1,28 +1,18 @@
-import s from './Feedback.module.css';
+import PropTypes from 'prop-types';
 
-const Feedback = ({ onIncrement }) => {
+import Section from '../Section';
+import FeedbackOptions from '../FeedbackOptions';
+
+const Feedback = ({ onLeaveFeedback }) => {
   return (
-    <div className={s.container}>
-      <span className={s.title}>Feedback</span>
-      <ul className={s.listButtons}>
-        <li className={s.listItem}>
-          <button className={s.button} onClick={() => onIncrement('good')}>
-            Good
-          </button>
-        </li>
-        <li className={s.listItem}>
-          <button className={s.button} onClick={() => onIncrement('neutral')}>
-            Neutral
-          </button>
-        </li>
-        <li className={s.listItem}>
-          <button className={s.button} onClick={() => onIncrement('bad')}>
-            Bad
-          </button>
-        </li>
-      </ul>
-    </div>
+    <Section title="Feedback">
+      <FeedbackOptions onLeaveFeedback={onLeaveFeedback} />
+    </Section>
   );
 };
 
 export default Feedback;
+
+Feedback.propTypes = {
+  onLeaveFeedback: PropTypes.func,
+};

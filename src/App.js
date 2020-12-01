@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
-import Feedback from './components/Feedback/Feedback';
-import Statistics from './components/Statistics/Statistics';
+import Feedback from './components/Feedback';
+import Statistics from './components/Statistics';
 
 import s from './App.module.css';
 
@@ -40,11 +40,14 @@ class App extends Component {
   }
 
   render() {
+    const { good, neutral, bad } = this.state;
     return (
       <div className={s.App}>
-        <Feedback onIncrement={this.increment} />
+        <Feedback onLeaveFeedback={this.increment} />
         <Statistics
-          statisticData={this.state}
+          good={good}
+          neutral={neutral}
+          bad={bad}
           total={this.countTotalFeedback()}
           percent={this.countPositiveFeedbackPercentage()}
         />

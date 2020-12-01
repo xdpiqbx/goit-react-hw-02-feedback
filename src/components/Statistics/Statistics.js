@@ -1,34 +1,37 @@
-import s from './Statistics.module.css';
+import PropTypes from 'prop-types';
 
-const Statistics = ({ statisticData, total, percent }) => {
-  const { good, neutral, bad } = statisticData;
+import Section from '../Section';
+import StatisticsItem from '../StatisticsItem';
+import Notification from '../Notification';
+
+const Statistics = ({ good, neutral, bad, total, percent }) => {
   return (
-    <div className={s.container}>
-      <span className={s.title}>Statistics</span>
-      <ul className={s.listButtons}>
-        <li className={s.listItem}>
-          <span className={s.itemTitle}>Good:</span>
-          <span className={s.itemValue}>{good}</span>
-        </li>
-        <li className={s.listItem}>
-          <span className={s.itemTitle}>Neutral:</span>
-          <span className={s.itemValue}>{neutral}</span>
-        </li>
-        <li className={s.listItem}>
-          <span className={s.itemTitle}>Bad:</span>
-          <span className={s.itemValue}>{bad}</span>
-        </li>
-        <li className={s.listItem}>
-          <span className={s.itemTitle}>Total:</span>
-          <span className={s.itemValue}>{total}</span>
-        </li>
-        <li className={s.listItem}>
-          <span className={s.itemTitle}>Positive feedback:</span>
-          <span className={s.itemValue}>{percent || 0}%</span>
-        </li>
-      </ul>
-    </div>
+    <Section title="Statistics">
+      {total ? (
+        <ul>
+          <StatisticsItem name="Good" value={good} />
+          <StatisticsItem name="Neutral" value={neutral} />
+          <StatisticsItem name="Bad" value={bad} />
+          <StatisticsItem name="Total" value={total} />
+          <StatisticsItem
+            name="Positive feedback"
+            value={percent}
+            isPercent={true}
+          />
+        </ul>
+      ) : (
+        <Notification message="No feedback given" />
+      )}
+    </Section>
   );
 };
 
 export default Statistics;
+
+Statistics.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  total: PropTypes.number,
+  percent: PropTypes.number,
+};
