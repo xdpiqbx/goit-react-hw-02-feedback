@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Section from '../Section';
 import FeedbackOptions from '../FeedbackOptions';
 
-const Feedback = ({ onLeaveFeedback }) => {
+const Feedback = ({ options, onLeaveFeedback }) => {
   return (
     <Section title="Feedback">
-      <FeedbackOptions onLeaveFeedback={onLeaveFeedback} />
+      <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
     </Section>
   );
 };

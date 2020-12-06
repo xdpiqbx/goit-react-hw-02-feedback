@@ -1,4 +1,3 @@
-import { Children } from 'react';
 import s from './Section.module.css';
 
 const Section = props => {

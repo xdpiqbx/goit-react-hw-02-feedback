@@ -13,20 +13,7 @@ class App extends Component {
   };
 
   increment = type => {
-    switch (type) {
-      case 'good':
-        this.setState(prevState => ({ good: prevState.good + 1 }));
-        break;
-      case 'neutral':
-        this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
-        break;
-      case 'bad':
-        this.setState(prevState => ({ bad: prevState.bad + 1 }));
-        break;
-      default:
-        console.log('Criminal value! =)');
-        break;
-    }
+    this.setState({ [type]: this.state[type] + 1 });
   };
 
   countTotalFeedback() {
@@ -43,7 +30,10 @@ class App extends Component {
     const { good, neutral, bad } = this.state;
     return (
       <div className={s.App}>
-        <Feedback onLeaveFeedback={this.increment} />
+        <Feedback
+          options={['good', 'neutral', 'bad']}
+          onLeaveFeedback={this.increment}
+        />
         <Statistics
           good={good}
           neutral={neutral}
